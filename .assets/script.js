@@ -1,30 +1,30 @@
+var timeBar = document.getElementById("12:00AM");
+var timeSave = document.getElementById("12:00AMSave");
 
-function addHours() {
-    //each of these hours will represent a row
-    var hours = [
-        '12:00AM',
-        '1:00AM',
-        '2:00AM',
-        '3:00AM',
-        '4:00AM',
-        '5:00AM',
-        '6:00AM',
-        '7:00AM',
-        '8:00AM',
-        '9:00AM',
-        '10:00AM',
-        '11:00AM',
-        '12:00PM',
-        '1:00PM',
-        '2:00PM',
-        '3:00PM',
-        '4:00PM',
-        '5:00PM',
-        '6:00PM',
-        '7:00PM',
-        '8:00PM',
-        '9:00PM',
-        '10:00PM',
-        '11:00PM',
-    ]
+function saveData() {
+    data2Save = timeBar.innerHTML;
+
+    localStorage.setItem("data2Save", JSON.stringify(data2Save));
 }
+
+function returnSavedData() {
+    var savedData = JSON.parse(localStorage.getItem("data2Save"));
+
+    if (savedData !== null) {
+        document.getElementById("12:00AM").innerHTML = savedData;
+    }
+    else {
+        return;
+    }
+}
+
+function saveBtn() {
+    saveData();
+    returnSavedData();
+}
+
+function init()  {
+    returnSavedData();
+}
+
+init();
